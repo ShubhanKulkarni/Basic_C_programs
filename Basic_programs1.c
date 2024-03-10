@@ -4,7 +4,6 @@
 #include <limits.h>
 #include <ctype.h>
 #include <math.h>
-
 void welcome()
 {
     int i = 0;
@@ -47,7 +46,27 @@ int main()
         printf("18.Sorting Elements 2(Quick SOrt) \n" );
         printf("19.Maze Source to destination \n" );
         printf("20.Towers of Hanoi\n" );
-        printf("21. Exit\n");
+        printf("21.Print 1 to n\n" );
+        printf("22.Factorial of a number\n" );
+        printf("23.Sum of 1 to n\n" );
+        printf("24.calculate a^b\n" );
+        printf("25.Stair Steps\n" );
+        printf("26.Merge two sorted arrays\n" );
+        printf("27.Add Two Matrices\n" );
+        printf("28.Multiply two matrices\n" );
+        printf("29.Subtract two matrices\n" );
+        printf("30.Transpose of matrix\n" );
+        printf("31.Rotate an Array\n" );
+        printf("32.Spiral of an Array\n" );
+        printf("33.Wave printing Array\n" );
+        printf("34.Wave printing Array 2\n" );
+        printf("35.Size of a string\n" );
+        printf("36.Reverse a string\n" );
+        printf("37.Print the day from input number\n" );
+        printf("38.Simple Calculator to perform basic operation\n" );
+        printf("39.Largest Element in an array\n" );
+        printf("40.Second Largest Element in an array\n" );
+        printf("41. Exit\n");
 
         printf("\nEnter your choice: ");
         scanf("%d", &choice);
@@ -136,17 +155,101 @@ int main()
             break;
 
 
-        case 21:
+        case 41:
             printf("Exiting the program. Goodbye!\n");
             exit(0);
             break;
+
+        case 21:
+            print_1_to_n();
+            break;
+
+        case 22:
+            factorial();
+            break;
+
+        case 23:
+            summmm_1_to_n();
+            break;
+
+        case 24:
+            power_a_b();
+            break;
+
+        case 25:
+            stair_path();
+            break;
+
+        case 26:
+            merge_two_sorted_arrays();
+            break;
+
+        case 27:
+            add_two_matrices();
+            break;
+
+        case 28:
+            multiply_matrices();
+            break;
+
+        case 29:
+            subtract_matrices();
+            break;
+
+        case 30:
+            transpose_matrix();
+            break;
+
+        case 31:
+            rotate_array();
+            break;
+
+        case 32:
+            spiral_array();
+            break;
+
+        case 33:
+            wave_printing_array();
+            break;
+
+         case 34:
+            wave_printing_array2();
+            break;
+
+         case 35:
+            size_of_string();
+            break;
+
+         case 36:
+            reverse_string();
+            break;
+
+         case 37:
+            print_day_from_number();
+            break;
+
+         case 38:
+            simple_calculator();
+            break;
+
+         case 39:
+            largest_element();
+            break;
+
+         case 40:
+            second_largest_element();
+            break;
+
+
+
+
 
         default:
             printf("Invalid choice. Please choose again.\n");
             break;
         }
 
-        if (choice != 21)
+        if (choice != 41)
         {
             printf("\nPress enter to continue...");
             getchar();
@@ -154,7 +257,7 @@ int main()
         }
 
     }
-    while (choice != 21);
+    while (choice != 41);
 
    return 0;
 }
@@ -257,7 +360,8 @@ int perfect_numbers()
     scanf("%d",&n);
     int ld,sum=0,j;
     int temp=n;
-    for(j=1;j<=print_count;j++)
+    int limitor=print_count();
+    for(j=1;j<=limitor;j++)
     {
         ld=n%j;
         if(ld==0)
@@ -455,7 +559,7 @@ void fibonacci()
 {
     int n;
     int f;
-    printf("Enter n\n");
+    printf("Enter number\n");
     scanf("%d",&n);
     int a=-1,b=1,c;
     for(int i=1;i<=n;i++)
@@ -597,7 +701,7 @@ void towers(int n,char from,char aux,char to)
 {
     if(n==1)
     {
-        printf("Move disk form %c to %c\n",from,to);
+        printf("Move disk from %c to %c\n",from,to);
         return;
     }
     // Move top n-1 disks from A to B using C as auxiliary
@@ -607,7 +711,597 @@ void towers(int n,char from,char aux,char to)
     // Move n-1 disks from B to C using A as auxiliary
     towers(n-1, aux, from, to);
 }
+void print_1_to_n()
+{
+    int n;
+    printf("Enter the number\n");
+    scanf("%d",&n);
+    decreasing(n);
+    return 0;
+}
+void decreasing(int a)
+{
+    if(a==0) return;
+    printf("%d ",a);
+    decreasing(a-1);
+    return 0;
+}
+void factorial()
+{
+    int n;
+    printf("Enter the number\n");
+    scanf("%d",&n);
+    int f=fact(n);
+    printf("Factorial=%d",f);
+    return 0;
+}
+int fact(int a)
+{
+    if(a==1) return 1;
+    return a*fact(a-1);
+}
+void summmm_1_to_n()
+{
+    int n;
+    printf("Enter the number\n");
+    scanf("%d",&n);
+    summmm(n,0);
+    return;
+}
+void summmm(int a,int s)
+{
+    if(a==0)
+    {
+        printf("Sum=%d",s);
+        return;
+    }
+    summmm(a-1,s+a);
+    return;
+}
+void power_a_b()
+{
+    int a;
+    printf("Enter the base of the number\n");
+    scanf("%d",&a);
+    int b;
+    printf("Enter the power of the number\n");
+    scanf("%d",&b);
+    int p=power(a,b);
+    printf("a^b=%d",p);
+    return 0;
+}
+int power(int a,int b)
+{
+    if(b==0)
+    {
+        return 1;
+    }
+    return a*power(a,b-1);
+}
 
+
+//number of single step or double step allowed to reach the nth step
+void stair_path()
+{
+   int n;
+   printf("Enter the total numbers of steps\n");
+   scanf("%d",&n);
+   int ways=stair(n);
+   printf("Total Ways=%d",ways);
+   return 0;
+}
+int stair(int n)
+{
+    if(n==1 || n==2) return n;
+    int totalways;
+    return totalways=stair(n-1) + stair(n-2);
+}
+
+void merge_two_sorted_arrays()
+{
+    int arr[4];
+    printf("Enter the values for array 1\n");
+    for(int i=0;i<4;i++)
+    {
+        scanf("%d",&arr[i]);
+    }
+    int brr[5];
+    printf("Enter the values for array 2\n");
+    for(int i=0;i<5;i++)
+    {
+        scanf("%d",&brr[i]);
+    }
+    int res[9];
+    merge_array(arr,brr,4,5,res);
+    return 0;
+
+}
+void merge_array(int arr[],int brr[],int n,int m,int res[])
+{
+    int i=0;
+    int j=0;
+    int k=0;
+    while(i<=n-1 && j<=m-1)
+    {
+        if(arr[i]<brr[j])
+        {
+            res[k]=arr[i];
+            i++;
+        }
+        else{
+            res[k]=brr[j];
+            j++;
+        }
+        k++;
+    }
+    if(i==n)
+    {
+        while(j<=m-1)
+        {
+            res[k]=brr[j];
+            k++;
+            j++;
+        }
+    }
+    else if(j==m)
+    {
+        while(i<=n-1)
+        {
+            res[k]=arr[i];
+            k++;
+            i++;
+        }
+    }
+    for(int i=0;i<9;i++)
+    {
+        printf("%d ",res[i]);
+    }
+    return;
+}
+
+void add_two_matrices()
+{
+    int a[2][2];
+    printf("Enter the elements for array 1\n");
+    for(int i=0;i<2;i++)
+    {
+        for(int j=0;j<2;j++)
+        {
+            scanf("%d",&a[i][j]);
+        }
+    }
+    int b[2][2];
+    printf("Enter the elements for array 2\n");
+    for(int i=0;i<2;i++)
+    {
+        for(int j=0;j<2;j++)
+        {
+            scanf("%d",&b[i][j]);
+        }
+    }
+    int c[2][2];
+    for(int i=0;i<2;i++)
+    {
+        for(int j=0;j<2;j++)
+        {
+            c[i][j]=a[i][j]+b[i][j];
+            printf("%d ",c[i][j]);
+        }
+        printf("\n");
+    }
+}
+void multiply_matrices()
+{
+    int a[2][2];
+    printf("Enter the elements for array 1\n");
+    for(int i=0;i<2;i++)
+    {
+        for(int j=0;j<2;j++)
+        {
+            scanf("%d",&a[i][j]);
+        }
+    }
+    int b[2][2];
+    printf("Enter the elements for array 2\n");
+    for(int i=0;i<2;i++)
+    {
+        for(int j=0;j<2;j++)
+        {
+            scanf("%d",&b[i][j]);
+        }
+    }
+    int c[2][2];
+    for(int i=0;i<2;i++)
+    {
+        for(int j=0;j<2;j++)
+        {
+            c[i][j]=a[i][j]*b[i][j];
+            printf("%d ",c[i][j]);
+        }
+        printf("\n");
+    }
+}
+void subtract_matrices()
+{
+    int a[2][2];
+    printf("Enter the elements for array 1\n");
+    for(int i=0;i<2;i++)
+    {
+        for(int j=0;j<2;j++)
+        {
+            scanf("%d",&a[i][j]);
+        }
+    }
+    int b[2][2];
+    printf("Enter the elements for array 2\n");
+    for(int i=0;i<2;i++)
+    {
+        for(int j=0;j<2;j++)
+        {
+            scanf("%d",&b[i][j]);
+        }
+    }
+    int c[2][2];
+    for(int i=0;i<2;i++)
+    {
+        for(int j=0;j<2;j++)
+        {
+            c[i][j]=a[i][j]-b[i][j];
+            printf("%d ",c[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+//123
+//456
+//789
+void transpose_matrix()
+{
+    int a[3][3];
+    printf("Enter the elements of the array 1\n");
+    for(int i=0;i<3;i++)
+    {
+        for(int j=0;j<3;j++)
+        {
+        scanf("%d",&a[i][j]);
+        }
+    }
+    int c[3][3];
+    for(int i=0;i<3;i++)
+    {
+        for(int j=0;j<3;j++)
+        {
+        c[i][j]=a[j][i];
+        printf("%d ",c[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+void rotate_array()
+{
+    int a[3][3];
+    printf("Enter the elements of the array 1\n");
+    for(int i=0;i<3;i++)
+    {
+        for(int j=0;j<3;j++)
+        {
+        scanf("%d",&a[i][j]);
+        }
+    }
+    int c[3][3];
+    for(int i=0;i<3;i++)
+    {
+        for(int j=0;j<3;j++)
+        {
+        c[i][j]=a[j][i];
+        printf("%d ",c[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+    for(int i=0;i<3;i++)
+    {
+        int j=0;
+        int k=2;
+        while(j<k)
+        {
+            int temp=c[i][j];
+            c[i][j]=c[i][k];
+            c[i][k]=temp;
+            j++;
+            k--;
+        }
+    }
+    for(int i=0;i<3;i++)
+    {
+        for(int j=0;j<3;j++)
+        {
+        printf("%d ",c[i][j]);
+        }
+        printf("\n");
+    }
+}
+void spiral_array()
+{
+    int n;
+    printf("Enter the rows of the matrix\n");
+    scanf("%d",&n);
+    int m;
+    printf("Enter the columns of the matrix\n");
+    scanf("%d",&m);
+    int a[m][n];
+    for(int i=0;i<m;i++)
+    {
+        for(int j=0;j<n;j++)
+        {
+            scanf("%d",&a[i][j]);
+        }
+    }
+    for(int i=0;i<m;i++)
+    {
+        if(n%2==0)
+        {
+           for(int j=0;j<n;j++)
+              {
+                 printf("%d ",a[i][j]);
+              }
+              printf("\n");
+        }
+        else
+        {
+            for(int j=n-1;j>=0;j--)
+               {
+                  printf("%d ",a[i][j]);
+               }
+               printf("\n");
+        }
+    }
+}
+
+void wave_printing_array()
+{
+    int n;
+    printf("Enter the rows of the matrix\n");
+    scanf("%d",&n);
+    int m;
+    printf("Enter the columns of the matrix\n");
+    scanf("%d",&m);
+    int a[m][n];
+    for(int i=0;i<m;i++)
+    {
+        for(int j=0;j<n;j++)
+        {
+            scanf("%d",&a[i][j]);
+        }
+    }
+    for(int i=0;i<m;i++)
+    {
+        if(i%2==0)
+        {
+           for(int j=0;j<n;j++)
+             {
+                printf("%d ",a[i][j]);
+             }
+           printf("\n");
+        }
+        else
+        {
+            for(int j=n-1;j>=0;j--)
+              {
+                printf("%d ",a[i][j]);
+              }
+              printf("\n");
+        }
+    }
+}
+void wave_printing_array2()
+{
+    int n;
+    printf("Enter the rows of the matrix\n");
+    scanf("%d",&n);
+    int m;
+    printf("Enter the columns of the matrix\n");
+    scanf("%d",&m);
+    int a[n][m];
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<m;j++)
+        {
+            scanf("%d",&a[i][j]);
+        }
+    }
+    printf("\n");
+    int minr=0;
+    int maxr=n-1;
+    int minc=0;
+    int maxc=m-1;
+    int tne=m*n;
+    int count=0;
+    while(count<tne)
+    {
+        for(int j=minc;j<=maxc;j++)
+        {
+            printf("%d ",a[minr][j]);
+            count++;
+        }
+        minr++;
+        if(count>=tne) break;
+        for(int i=minr;i<=maxr;i++)
+        {
+            printf("%d ",a[i][maxc]);
+            count++;
+        }
+        maxc--;
+        if(count>=tne) break;
+        for(int j=maxc;j>=minc;j--)
+        {
+            printf("%d ",a[maxr][j]);
+            count++;
+        }
+        maxr--;
+        if(count>=tne) break;
+        for(int i=maxr;i>=minr;i--)
+        {
+            printf("%d ",a[i][minc]);
+            count++;
+        }
+        minc++;
+        if(count>=tne) break;
+    }
+}
+void size_of_string()
+{
+    char str[40];
+    puts("Enter a string");
+    scanf("%s",str);
+    puts("The size of string is:");
+    int size=0;
+    int i=0;
+    while(str[i]!='\0')
+    {
+        size++;
+        i++;
+    }
+    printf("%d",size);
+    return 0;
+}
+void reverse_string()
+{
+    char str[40];
+    puts("Enter a string");
+    scanf("%s",str);
+    int size=0;
+    int i=0,s;
+    while(str[i]!='\0')
+    {
+        size++;
+        i++;
+    }
+    for(int k=0,s=size-1;k<=s;k++,s--)
+    {
+        char temp =str[k];
+        str[k]=str[s];
+        str[s]=temp;
+    }
+    puts("The reverse string is:");
+    puts(str);
+    return 0;
+}
+
+void print_day_from_number()
+{
+    int n;
+    printf("Enter the day number(1-7)\n");
+    scanf("%d",&n);
+    switch(n)
+    {
+        case 1:
+        printf("Monday");
+        break;
+        case 2:
+        printf("Tuesday");
+        break;
+        case 3:
+        printf("Wednesday");
+        break;
+        case 4:
+        printf("Thursday");
+        break;
+        case 5:
+        printf("Friday");
+        break;
+        case 6:
+        printf("Saturday");
+        break;
+        case 7:
+        printf("Sunday");
+        break;
+        default:
+            printf("Invalid Input");
+    }
+}
+
+void simple_calculator()
+{
+    float a;
+    printf("Enter the first number\n");
+    scanf("%f",&a);
+    float b;
+    printf("Enter the second number\n");
+    scanf("%f",&b);
+    char ch;
+    printf("Enter the type of operation to be performed\n");
+    scanf("%s",&ch);
+    switch(ch)
+    {
+         case '+':
+         printf("%f",a+b);
+         break;
+
+         case '-':
+         printf("%f",a-b);
+         break;
+
+         case '*':
+         printf("%f",a*b);
+         break;
+
+         case '/':
+         printf("%f",a/b);
+    }
+}
+void largest_element()
+{
+    int n;
+    printf("Enter the size of the array\n");
+    scanf("%d",&n);
+    int arr[n];
+    for(int i=0;i<n;i++)
+    {
+        scanf("%d",&arr[i]);
+    }
+    int max=arr[0];
+    for(int i=1;i<=n;i++)
+    {
+        if(max<arr[i])
+        {
+            max=arr[i];
+        }
+    }
+    printf("Max element=%d",max);
+    return 0;
+}
+
+void second_largest_element()
+{
+    int n;
+    printf("Enter the size of the array\n");
+    scanf("%d",&n);
+    int arr[n];
+    for(int i=0;i<n;i++)
+    {
+        scanf("%d",&arr[i]);
+    }
+    int max=INT_MIN;
+    int smax=INT_MIN;
+    for(int i=1;i<=n;i++)
+    {
+        if(max<arr[i])
+        {
+            max=arr[i];
+        }
+    }
+    for(int i=0;i<=n;i++)
+    {
+        if(arr[i]!=max && smax<arr[i])
+        {
+            smax=arr[i];
+        }
+    }
+    printf("Second max=%d",smax);
+}
 
 
 
